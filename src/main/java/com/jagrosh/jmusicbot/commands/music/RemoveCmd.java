@@ -34,7 +34,7 @@ public class RemoveCmd extends MusicCommand
     {
         super(bot);
         this.name = "remove";
-        this.help = "removes a song from the queue";
+        this.help = "Retirer une musique de la queue";
         this.arguments = "<position|ALL>";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.beListening = true;
@@ -47,16 +47,16 @@ public class RemoveCmd extends MusicCommand
         AudioHandler handler = (AudioHandler)event.getGuild().getAudioManager().getSendingHandler();
         if(handler.getQueue().isEmpty())
         {
-            event.replyError("There is nothing in the queue!");
+            event.replyError("Il n'y a aucune musiques dans la queue");
             return;
         }
         if(event.getArgs().equalsIgnoreCase("all"))
         {
             int count = handler.getQueue().removeAll(event.getAuthor().getIdLong());
             if(count==0)
-                event.replyWarning("You don't have any songs in the queue!");
+                event.replyWarning("Il n'y a aucune musiques dans votre queue!");
             else
-                event.replySuccess("Successfully removed your "+count+" entries.");
+                event.replySuccess("Vos "+count+" entrées ont été supprimées avec succès.");
             return;
         }
         int pos;
@@ -67,7 +67,7 @@ public class RemoveCmd extends MusicCommand
         }
         if(pos<1 || pos>handler.getQueue().size())
         {
-            event.replyError("Position must be a valid integer between 1 and "+handler.getQueue().size()+"!");
+            event.replyError("La position doit être un nombre situé entre 1 et "+handler.getQueue().size()+"!");
             return;
         }
         Settings settings = event.getClient().getSettingsFor(event.getGuild());
@@ -78,7 +78,7 @@ public class RemoveCmd extends MusicCommand
         if(qt.getIdentifier()==event.getAuthor().getIdLong())
         {
             handler.getQueue().remove(pos-1);
-            event.replySuccess("Removed **"+qt.getTrack().getInfo().title+"** from the queue");
+            event.replySuccess("La musique **"+qt.getTrack().getInfo().title+"** a été enlevée de la queue");
         }
         else if(isDJ)
         {
@@ -89,12 +89,12 @@ public class RemoveCmd extends MusicCommand
             } catch(Exception e) {
                 u = null;
             }
-            event.replySuccess("Removed **"+qt.getTrack().getInfo().title
-                    +"** from the queue (requested by "+(u==null ? "someone" : "**"+u.getName()+"**")+")");
+            event.replySuccess("La musique **"+qt.getTrack().getInfo().title
+                    +"** a été enlevée de la queue (Demandé par "+(u==null ? "quelqu'un" : "**"+u.getName()+"**")+")");
         }
         else
         {
-            event.replyError("You cannot remove **"+qt.getTrack().getInfo().title+"** because you didn't add it!");
+            event.replyError("Vous ne pouvez pas enlever **"+qt.getTrack().getInfo().title+"** de la queue car elle n'a pas été demandée par vous-même!");
         }
     }
 }

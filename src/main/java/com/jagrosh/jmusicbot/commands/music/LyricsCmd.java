@@ -36,7 +36,7 @@ public class LyricsCmd extends MusicCommand
         super(bot);
         this.name = "lyrics";
         this.arguments = "[song name]";
-        this.help = "shows the lyrics to the currently-playing song";
+        this.help = "Affiche les paroles d'une chanson";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
         this.bePlaying = true;
@@ -55,7 +55,7 @@ public class LyricsCmd extends MusicCommand
         {
             if(lyrics == null)
             {
-                event.replyError("Lyrics for `" + title + "` could not be found!" + (event.getArgs().isEmpty() ? " Try entering the song name manually (`lyrics [song name]`)" : ""));
+                event.replyError("Les paroles pour la chanson `" + title + "` n'ont pas pus être trouvées !" + (event.getArgs().isEmpty() ? " Essayez d'entrer le nom de la chanson manuellement (`lyrics [song name]`)" : ""));
                 return;
             }
 
@@ -65,7 +65,7 @@ public class LyricsCmd extends MusicCommand
                     .setTitle(lyrics.getTitle(), lyrics.getURL());
             if(lyrics.getContent().length()>15000)
             {
-                event.replyWarning("Lyrics for `" + title + "` found but likely not correct: " + lyrics.getURL());
+                event.replyWarning("Les paroles pour la musique `" + title + "` ont été trouvées mais ne semblent pas correctes: " + lyrics.getURL());
             }
             else if(lyrics.getContent().length()>2000)
             {

@@ -37,7 +37,7 @@ public class SettingsCmd extends Command
     public SettingsCmd(Bot bot)
     {
         this.name = "settings";
-        this.help = "shows the bots settings";
+        this.help = "Affiche les paramètres";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.guildOnly = true;
     }
@@ -47,24 +47,23 @@ public class SettingsCmd extends Command
     {
         Settings s = event.getClient().getSettingsFor(event.getGuild());
         MessageBuilder builder = new MessageBuilder()
-                .append(EMOJI + " **")
-                .append(FormatUtil.filter(event.getSelfUser().getName()))
-                .append("** settings:");
+                .append(EMOJI + " **Paramètres de ")
+                .append(FormatUtil.filter(event.getSelfUser().getName()));
         TextChannel tchan = s.getTextChannel(event.getGuild());
         VoiceChannel vchan = s.getVoiceChannel(event.getGuild());
         Role role = s.getRole(event.getGuild());
         EmbedBuilder ebuilder = new EmbedBuilder()
                 .setColor(event.getSelfMember().getColor())
-                .setDescription("Text Channel: " + (tchan == null ? "Any" : "**#" + tchan.getName() + "**")
-                        + "\nVoice Channel: " + (vchan == null ? "Any" : "**" + vchan.getName() + "**")
-                        + "\nDJ Role: " + (role == null ? "None" : "**" + role.getName() + "**")
-                        + "\nCustom Prefix: " + (s.getPrefix() == null ? "None" : "`" + s.getPrefix() + "`")
-                        + "\nRepeat Mode: **" + (s.getRepeatMode() ? "On" : "Off") + "**"
-                        + "\nDefault Playlist: " + (s.getDefaultPlaylist() == null ? "None" : "**" + s.getDefaultPlaylist() + "**")
+                .setDescription("Channel Textuel: " + (tchan == null ? "N'importe lequel" : "**#" + tchan.getName() + "**")
+                        + "\nChannel Vocal: " + (vchan == null ? "N'importe lequel" : "**" + vchan.getName() + "**")
+                        + "\nRôle DJ: " + (role == null ? "Aucun" : "**" + role.getName() + "**")
+                        + "\nPréfix Personalisé: " + (s.getPrefix() == null ? "Aucun" : "`" + s.getPrefix() + "`")
+                        + "\nMode Boucle: **" + (s.getRepeatMode() ? "Activé" : "Désactivé") + "**"
+                        + "\nPlaylist par défaut: " + (s.getDefaultPlaylist() == null ? "Aucune" : "**" + s.getDefaultPlaylist() + "**")
                         )
-                .setFooter(event.getJDA().getGuilds().size() + " servers | "
+                .setFooter(event.getJDA().getGuilds().size() + " serveurs | "
                         + event.getJDA().getGuilds().stream().filter(g -> g.getSelfMember().getVoiceState().inVoiceChannel()).count()
-                        + " audio connections", null);
+                        + " connections audio", null);
         event.getChannel().sendMessage(builder.setEmbed(ebuilder.build()).build()).queue();
     }
     

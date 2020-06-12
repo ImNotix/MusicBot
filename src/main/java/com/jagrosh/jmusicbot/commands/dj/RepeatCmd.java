@@ -30,7 +30,7 @@ public class RepeatCmd extends DJCommand
     {
         super(bot);
         this.name = "repeat";
-        this.help = "re-adds music to the queue when finished";
+        this.help = "Re-Ajoute une musique à la queue quand celle-ci est finie";
         this.arguments = "[on|off]";
         this.aliases = bot.getConfig().getAliases(this.name);
         this.guildOnly = true;
@@ -56,11 +56,11 @@ public class RepeatCmd extends DJCommand
         }
         else
         {
-            event.replyError("Valid options are `on` or `off` (or leave empty to toggle)");
+            event.replyError("Les options valides sont `on` ou `off` (Laissez vide pour changer automatiquement)");
             return;
         }
         settings.setRepeatMode(value);
-        event.replySuccess("Repeat mode is now `"+(value ? "ON" : "OFF")+"`");
+        event.replySuccess("Le mode boucle est maintenant `"+(value ? "activé" : "désactivé")+"`");
     }
 
     @Override

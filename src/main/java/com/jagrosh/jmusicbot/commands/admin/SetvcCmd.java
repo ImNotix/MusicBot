@@ -43,26 +43,26 @@ public class SetvcCmd extends AdminCommand
     {
         if(event.getArgs().isEmpty())
         {
-            event.reply(event.getClient().getError()+" Merci de spécifier un channel vocal ou \"NONE\"");
+            event.reply(event.getClient().getError()+" Merci de spécifier un salon vocal ou \"NONE\"");
             return;
         }
         Settings s = event.getClient().getSettingsFor(event.getGuild());
         if(event.getArgs().equalsIgnoreCase("none"))
         {
             s.setVoiceChannel(null);
-            event.reply(event.getClient().getSuccess()+" La musique peut maintenant être joué dans tous les salons");
+            event.reply(event.getClient().getSuccess()+" La musique peut maintenant être joué dans tous les salons vocaux");
         }
         else
         {
             List<VoiceChannel> list = FinderUtil.findVoiceChannels(event.getArgs(), event.getGuild());
             if(list.isEmpty())
-                event.reply(event.getClient().getWarning()+" Aucun channel vocal trouvé avec le nom \""+event.getArgs()+"\"");
+                event.reply(event.getClient().getWarning()+" Aucun salon vocal n'a été trouvé avec le nom \""+event.getArgs()+"\"");
             else if (list.size()>1)
                 event.reply(event.getClient().getWarning()+FormatUtil.listOfVChannels(list, event.getArgs()));
             else
             {
                 s.setVoiceChannel(list.get(0));
-                event.reply(event.getClient().getSuccess()+" La musique ne peut maintenant que être jouée que dans le salon **"+list.get(0).getName()+"**");
+                event.reply(event.getClient().getSuccess()+" La musique ne peut désormais uniquement être jouée que dans le salon vocal **"+list.get(0).getName()+"**");
             }
         }
     }

@@ -111,7 +111,7 @@ public class BotConfig
                         + "\nToken de Bot: ");
                 if(token==null)
                 {
-                    prompt.alert(Prompt.Level.WARNING, CONTEXT, "Aucun token renseigné ! Arrêt.\n\nLocation de la config: " + path.toAbsolutePath().toString());
+                    prompt.alert(Prompt.Level.WARNING, CONTEXT, "Aucun token n'a été renseigné ! Arrêt.\n\nEmplacement du fichier config: " + path.toAbsolutePath().toString());
                     return;
                 }
                 else
@@ -137,7 +137,7 @@ public class BotConfig
                 }
                 if(owner<=0)
                 {
-                    prompt.alert(Prompt.Level.ERROR, CONTEXT, "ID d'utilisateur incorrect ! Arrêt.\n\nLocation de la config: " + path.toAbsolutePath().toString());
+                    prompt.alert(Prompt.Level.ERROR, CONTEXT, "ID d'utilisateur incorrect ! Arrêt.\n\nEmplacement du fichier config: " + path.toAbsolutePath().toString());
                     System.exit(0);
                 }
                 else
@@ -168,7 +168,7 @@ public class BotConfig
                 catch(IOException ex) 
                 {
                     prompt.alert(Prompt.Level.WARNING, CONTEXT, "Échec lors de l'écriture des nouvelles options dans le fichier config.txt: "+ex
-                        + "\nMerci de vérifier si le fichier n'est pas sur votre ordinateur ou dans d'autres zones réstreintes.\n\nLocation de la config: " 
+                        + "\nMerci de vérifier si le fichier n'est pas sur votre ordinateur ou dans d'autres zones restreintes.\n\nEmplacement du fichier de configuration : " 
                         + path.toAbsolutePath().toString());
                 }
             }
@@ -178,7 +178,7 @@ public class BotConfig
         }
         catch (ConfigException ex)
         {
-            prompt.alert(Prompt.Level.ERROR, CONTEXT, ex + ": " + ex.getMessage() + "\n\nLocation de la config: " + path.toAbsolutePath().toString());
+            prompt.alert(Prompt.Level.ERROR, CONTEXT, ex + ": " + ex.getMessage() + "\n\nEmplacement du fichier de configuration : " + path.toAbsolutePath().toString());
         }
     }
     

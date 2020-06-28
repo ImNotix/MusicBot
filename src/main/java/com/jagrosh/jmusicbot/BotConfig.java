@@ -167,7 +167,7 @@ public class BotConfig
                 }
                 catch(IOException ex) 
                 {
-                    prompt.alert(Prompt.Level.WARNING, CONTEXT, "Echec lors de l'écriture des nouvelles options dans le fichier config.txt: "+ex
+                    prompt.alert(Prompt.Level.WARNING, CONTEXT, "Échec lors de l'écriture des nouvelles options dans le fichier config.txt: "+ex
                         + "\nMerci de vérifier si le fichier n'est pas sur votre ordinateur ou dans d'autres zones réstreintes.\n\nLocation de la config: " 
                         + path.toAbsolutePath().toString());
                 }
